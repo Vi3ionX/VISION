@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pay for your VISION gear rental.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpolygon points='4,54 24,16 36,38 44,26 60,54' fill='%231f4d3a'/%3E%3C/svg%3E">
+  <title>Payment | VISION</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="bar">
+      <a class="brand" href="index.html">VISION</a>
+      <nav aria-label="Main navigation">
+        <ul><li><a href="index.html#planner">Back to rental plan</a></li></ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="pay-wrap" aria-labelledby="pay-h">
+      <h2 id="pay-h">Payment</h2>
+
+      <p id="no-booking" class="empty" hidden>No booking found. Please <a href="index.html#planner">plan your rental</a> first.</p>
+
+      <div id="pay-area" hidden>
+        <div class="card pay-summary">
+          <h3>Booking summary</h3>
+          <p id="sum-details"></p>
+          <ul id="sum-items"></ul>
+          <p>Total to pay now (rental + GST + refundable deposit): <strong id="sum-total"></strong></p>
+        </div>
+
+        <form id="pay-form" class="card form pay-form" onsubmit="return payNow()">
+          <h3>Choose payment method</h3>
+          <p class="pay-demo">This is a demo payment page. No real payment is taken and nothing you type here is stored.</p>
+
+          <fieldset class="chips">
+            <legend>Payment method</legend>
+            <input type="radio" name="method" id="m-upi" value="UPI" checked onchange="showMethod()"><label class="chip" for="m-upi">UPI</label>
+            <input type="radio" name="method" id="m-card" value="Card" onchange="showMethod()"><label class="chip" for="m-card">Debit / Credit card</label>
+            <input type="radio" name="method" id="m-net" value="Net banking" onchange="showMethod()"><label class="chip" for="m-net">Net banking</label>
+          </fieldset>
+
+          <div id="f-upi" class="pay-fields">
+            <label>UPI ID <input id="upi-id" required pattern="[A-Za-z0-9._\-]{2,}@[A-Za-z]{2,}" title="Example: name@bank" placeholder="name@bank"></label>
+          </div>
+
+          <div id="f-card" class="pay-fields" hidden>
+            <label>Name on card <input id="card-name" autocomplete="cc-name"></label>
+            <label>Card number <input id="card-no" inputmode="numeric" pattern="[0-9 ]{16,19}" title="16-digit card number" placeholder="1234 5678 9012 3456" autocomplete="cc-number"></label>
+            <div class="row">
+              <label>Expiry (MM/YY) <input id="card-exp" pattern="(0[1-9]|1[0-2])/[0-9]{2}" title="MM/YY" placeholder="MM/YY" autocomplete="cc-exp"></label>
+              <label>CVV <input id="card-cvv" type="password" inputmode="numeric" pattern="[0-9]{3,4}" title="3 or 4 digits" autocomplete="cc-csc"></label>
+            </div>
+          </div>
+
+          <div id="f-net" class="pay-fields" hidden>
+            <label>Choose your bank
+              <select id="bank">
+                <option value="">Choose...</option><option>State Bank of India</option><option>HDFC Bank</option><option>ICICI Bank</option><option>Punjab National Bank</option><option>Axis Bank</option>
+              </select>
+            </label>
+          </div>
+
+          <button class="btn btn-pay" type="submit" id="pay-btn">Pay now</button>
+        </form>
+      </div>
+
+      <div id="confirmation" class="card ok" role="status" hidden></div>
+    </section>
+  </main>
+
+  <footer>
+    <address>VISION Gear Rentals &middot; VISION@gmail.com</address>
+    <p><small>&copy; <time datetime="2026">2026</time> VISION. CSE326 course project.</small></p>
+  </footer>
+  <script src="js/payment.js"></script>
+</body>
+</html>

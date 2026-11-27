@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rent tents, sleeping bags, rucksacks, stoves and trekking poles by the day.">
+  <meta name="keywords" content="camping gear rental, tent rental, sleeping bag rental, trekking poles, hiking equipment, Punjab">
+  <meta name="author" content="VISION project team">
+  <meta property="og:title" content="VISION | Camping Gear &amp; Hiking Equipment Rental">
+  <meta property="og:description" content="Rent tents, sleeping bags, rucksacks, stoves and trekking poles by the day.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpolygon points='4,54 24,16 36,38 44,26 60,54' fill='%231f4d3a'/%3E%3C/svg%3E">
+  <title>VISION | Camping Gear &amp; Hiking Equipment Rental Catalog</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="top">
+  <a class="skip" href="#catalog">Skip to catalog</a>
+
+  <!-- Inline SVG icon sprite (Unit 1: SVG shapes) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-tent" viewBox="0 0 64 64"><polygon points="32,12 58,52 6,52"/><polyline points="24,52 32,34 40,52"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 64 64"><rect x="6" y="20" width="52" height="24" rx="12"/><line x1="40" y1="20" x2="40" y2="44"/><line x1="14" y1="32" x2="32" y2="32"/></symbol>
+    <symbol id="i-pack" viewBox="0 0 64 64"><rect x="16" y="14" width="32" height="42" rx="9"/><rect x="22" y="36" width="20" height="14" rx="3"/><polyline points="24,14 24,8 40,8 40,14"/></symbol>
+    <symbol id="i-stove" viewBox="0 0 64 64"><rect x="10" y="40" width="44" height="12" rx="3"/><polyline points="20,40 24,30 40,30 44,40"/><polygon points="32,8 39,22 25,22"/></symbol>
+    <symbol id="i-pole" viewBox="0 0 64 64"><line x1="18" y1="58" x2="34" y2="8"/><line x1="38" y1="58" x2="52" y2="10"/><circle cx="34" cy="8" r="3"/><circle cx="52" cy="10" r="3"/></symbol>
+    <symbol id="i-mountain" viewBox="0 0 64 64"><polygon points="4,54 24,16 36,38 44,26 60,54"/><polyline points="18,28 24,34 30,28"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 64 64"><polygon points="32,6 54,14 54,34 32,58 10,34 10,14"/><polyline points="22,32 30,40 44,24"/></symbol>
+  </svg>
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="brand" href="#top"><svg class="icon" aria-hidden="true"><use href="#i-mountain"></use></svg> VISION</a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#catalog">Catalog</a></li>
+          <li><a href="#bundles">Trek Bundles</a></li>
+          <li><a href="#size-guide">Size Guide</a></li>
+          <li><a href="#sanitation">Sanitation</a></li>
+          <li><a href="#find-us">Find Us</a></li>
+          <li><a class="cart-link" href="#planner">My Rental (<span id="cart-count">0</span>)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Rent it. Hike it. Return it.</p>
+        <h1>Outdoor Camping Gear &amp; Hiking Equipment Rental Catalog</h1>
+        <p>Why spend thousands on a 4-season tent or a sub-zero sleeping bag you will use twice a year? Rent trail-ready, sanitised gear by the day and get your deposit back on return.</p>
+        <p class="cta"><a class="btn" href="#catalog">Browse gear</a> <a class="btn btn-alt" href="#bundles">See trek bundles</a></p>
+      </div>
+      <figure>
+        <img class="hero-img" src="images/trek.jpg" alt="A trekker resting on a flower-covered meadow below snow-capped Himalayan peaks" width="736" height="900">
+        <figcaption>&ldquo;Mountains are silent masters and make silent students.&rdquo;</figcaption>
+      </figure>
+    </section>
+
+    <section id="catalog" aria-labelledby="catalog-h">
+      <h2 id="catalog-h">Gear Catalog</h2>
+      <div class="filters card" role="search" aria-label="Catalog filters">
+        <!-- Category buttons: click one to see only that category, click All to see everything -->
+        <div class="chips" role="group" aria-label="Gear category">
+          <button type="button" class="chip active" data-cat="All" aria-pressed="true" onclick="setCategory('All')">All</button>
+          <button type="button" class="chip" data-cat="Tents" aria-pressed="false" onclick="setCategory('Tents')">Tents</button>
+          <button type="button" class="chip" data-cat="Sleeping Bags" aria-pressed="false" onclick="setCategory('Sleeping Bags')">Sleeping Bags</button>
+          <button type="button" class="chip" data-cat="Rucksacks" aria-pressed="false" onclick="setCategory('Rucksacks')">Rucksacks</button>
+          <button type="button" class="chip" data-cat="Stoves" aria-pressed="false" onclick="setCategory('Stoves')">Stoves</button>
+          <button type="button" class="chip" data-cat="Trekking Poles" aria-pressed="false" onclick="setCategory('Trekking Poles')">Trekking Poles</button>
+        </div>
+        <div class="filter-row">
+          <label for="f-search">Search
+            <input type="search" id="f-search" placeholder="e.g. dome, stove" oninput="applyFilters()">
+          </label>
+          <label for="f-tent" id="tent-wrap">Tent type
+            <select id="f-tent" onchange="applyFilters()">
+              <option value="">All tents</option>
+              <option value="2-Person">2-Person</option>
+              <option value="4-Person">4-Person</option>
+              <option value="Dome">Dome</option>
+            </select>
+          </label>
+          <label for="f-temp">Trek temperature rating
+            <select id="f-temp" onchange="applyFilters()">
+              <option value="">Any rating</option>
+              <option value="10">10°C summer / low altitude</option>
+              <option value="0">0°C cold hills</option>
+              <option value="-10">-10°C high altitude</option>
+            </select>
+          </label>
+          <label for="f-price">Max price per day: <output id="f-price-out" for="f-price">₹800</output>
+            <input type="range" id="f-price" min="50" max="800" step="10" value="800" oninput="applyFilters()">
+          </label>
+          <label for="f-sort">Sort by
+            <select id="f-sort" onchange="applyFilters()">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: low to high</option>
+              <option value="price-high">Price: high to low</option>
+              <option value="name">Name: A to Z</option>
+            </select>
+          </label>
+        </div>
+        <button type="button" class="btn btn-alt" onclick="resetFilters()">Reset filters</button>
+      </div>
+      <p id="result-count" class="meta" aria-live="polite"></p>
+      <p id="no-results" class="empty" hidden>No gear matches these filters. Try a different category or press Reset filters.</p>
+      <div id="catalog-grid" class="grid">
+        <article class="card gear" data-name="TrailLite 2-Person Tent" data-stock="6" data-cat="Tents" data-type="2-Person" data-temp="none" data-price="349">
+          <svg class="icon" aria-hidden="true"><use href="#i-tent"></use></svg>
+          <h3>TrailLite 2-Person Tent</h3>
+          <p class="tags"><span>Tents</span><span>2-Person</span></p>
+          <p>3-season, quick pitch. Ideal for couples and weekend hikes.</p>
+          <p class="meta">2.1 kg &middot; 6 available</p>
+          <p class="price"><strong>₹349</strong> / day <small>Refundable deposit ₹2500</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('TrailLite 2-Person Tent', 349, 2500, 6)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="BaseCamp 4-Person Family Tent" data-stock="4" data-cat="Tents" data-type="4-Person" data-temp="none" data-price="549">
+          <svg class="icon" aria-hidden="true"><use href="#i-tent"></use></svg>
+          <h3>BaseCamp 4-Person Family Tent</h3>
+          <p class="tags"><span>Tents</span><span>4-Person</span></p>
+          <p>Roomy two-door tent with porch for group campouts.</p>
+          <p class="meta">4.8 kg &middot; 4 available</p>
+          <p class="price"><strong>₹549</strong> / day <small>Refundable deposit ₹4000</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('BaseCamp 4-Person Family Tent', 549, 4000, 4)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="PopUp Dome Tent (3-Person)" data-stock="8" data-cat="Tents" data-type="Dome" data-temp="none" data-price="299">
+          <svg class="icon" aria-hidden="true"><use href="#i-tent"></use></svg>
+          <h3>PopUp Dome Tent (3-Person)</h3>
+          <p class="tags"><span>Tents</span><span>Dome</span></p>
+          <p>Lightweight, water-resistant dome that pitches in minutes.</p>
+          <p class="meta">2.8 kg &middot; 8 available</p>
+          <p class="price"><strong>₹299</strong> / day <small>Refundable deposit ₹2000</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('PopUp Dome Tent (3-Person)', 299, 2000, 8)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Summit 4-Season Dome Tent" data-stock="3" data-cat="Tents" data-type="Dome" data-temp="none" data-price="799">
+          <svg class="icon" aria-hidden="true"><use href="#i-tent"></use></svg>
+          <h3>Summit 4-Season Dome Tent</h3>
+          <p class="tags"><span>Tents</span><span>Dome</span></p>
+          <p>Storm-ready 4-season dome for snow and high winds.</p>
+          <p class="meta">3.9 kg &middot; 3 available</p>
+          <p class="price"><strong>₹799</strong> / day <small>Refundable deposit ₹6000</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Summit 4-Season Dome Tent', 799, 6000, 3)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Valley Light Sleeping Bag" data-stock="10" data-cat="Sleeping Bags" data-type="" data-temp="10" data-price="129">
+          <svg class="icon" aria-hidden="true"><use href="#i-bag"></use></svg>
+          <h3>Valley Light Sleeping Bag</h3>
+          <p class="tags"><span>Sleeping Bags</span><span>Comfort 10°C</span></p>
+          <p>Warm-season camping and low-altitude nights.</p>
+          <p class="meta">0.9 kg &middot; 10 available</p>
+          <p class="price"><strong>₹129</strong> / day <small>Refundable deposit ₹1000</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Valley Light Sleeping Bag', 129, 1000, 10)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Ridge Synthetic Sleeping Bag" data-stock="8" data-cat="Sleeping Bags" data-type="" data-temp="0" data-price="229">
+          <svg class="icon" aria-hidden="true"><use href="#i-bag"></use></svg>
+          <h3>Ridge Synthetic Sleeping Bag</h3>
+          <p class="tags"><span>Sleeping Bags</span><span>Comfort 0°C</span></p>
+          <p>Cold nights in the hills and shoulder season.</p>
+          <p class="meta">1.4 kg &middot; 8 available</p>
+          <p class="price"><strong>₹229</strong> / day <small>Refundable deposit ₹1800</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Ridge Synthetic Sleeping Bag', 229, 1800, 8)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Foothill Mummy Bag" data-stock="5" data-cat="Sleeping Bags" data-type="" data-temp="0" data-price="249">
+          <svg class="icon" aria-hidden="true"><use href="#i-bag"></use></svg>
+          <h3>Foothill Mummy Bag</h3>
+          <p class="tags"><span>Sleeping Bags</span><span>Comfort 0°C</span></p>
+          <p>Compressible mummy cut that packs small.</p>
+          <p class="meta">1.3 kg &middot; 5 available</p>
+          <p class="price"><strong>₹249</strong> / day <small>Refundable deposit ₹2000</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Foothill Mummy Bag', 249, 2000, 5)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Glacier High-Altitude Bag" data-stock="6" data-cat="Sleeping Bags" data-type="" data-temp="-10" data-price="349">
+          <svg class="icon" aria-hidden="true"><use href="#i-bag"></use></svg>
+          <h3>Glacier High-Altitude Bag</h3>
+          <p class="tags"><span>Sleeping Bags</span><span>Comfort -10°C</span></p>
+          <p>Sub-zero rated for Himalayan treks.</p>
+          <p class="meta">1.9 kg &middot; 6 available</p>
+          <p class="price"><strong>₹349</strong> / day <small>Refundable deposit ₹3000</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Glacier High-Altitude Bag', 349, 3000, 6)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Himalaya Down Bag" data-stock="4" data-cat="Sleeping Bags" data-type="" data-temp="-10" data-price="399">
+          <svg class="icon" aria-hidden="true"><use href="#i-bag"></use></svg>
+          <h3>Himalaya Down Bag</h3>
+          <p class="tags"><span>Sleeping Bags</span><span>Comfort -10°C</span></p>
+          <p>Premium down fill with the best warmth-to-weight.</p>
+          <p class="meta">1.6 kg &middot; 4 available</p>
+          <p class="price"><strong>₹399</strong> / day <small>Refundable deposit ₹3500</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Himalaya Down Bag', 399, 3500, 4)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="TrekLite 40L Rucksack" data-stock="8" data-cat="Rucksacks" data-type="" data-temp="none" data-price="149">
+          <svg class="icon" aria-hidden="true"><use href="#i-pack"></use></svg>
+          <h3>TrekLite 40L Rucksack</h3>
+          <p class="tags"><span>Rucksacks</span></p>
+          <p>Comfortable pack for weekend trips.</p>
+          <p class="meta">1.1 kg &middot; 8 available</p>
+          <p class="price"><strong>₹149</strong> / day <small>Refundable deposit ₹1200</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('TrekLite 40L Rucksack', 149, 1200, 8)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Ridgeline 55L Rucksack" data-stock="6" data-cat="Rucksacks" data-type="" data-temp="none" data-price="219">
+          <svg class="icon" aria-hidden="true"><use href="#i-pack"></use></svg>
+          <h3>Ridgeline 55L Rucksack</h3>
+          <p class="tags"><span>Rucksacks</span></p>
+          <p>Adjustable back system for 4-6 day treks.</p>
+          <p class="meta">1.8 kg &middot; 6 available</p>
+          <p class="price"><strong>₹219</strong> / day <small>Refundable deposit ₹1800</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Ridgeline 55L Rucksack', 219, 1800, 6)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Expedition 70L Rucksack" data-stock="5" data-cat="Rucksacks" data-type="" data-temp="none" data-price="299">
+          <svg class="icon" aria-hidden="true"><use href="#i-pack"></use></svg>
+          <h3>Expedition 70L Rucksack</h3>
+          <p class="tags"><span>Rucksacks</span></p>
+          <p>Padded hip belt and rain cover for long treks.</p>
+          <p class="meta">2.3 kg &middot; 5 available</p>
+          <p class="price"><strong>₹299</strong> / day <small>Refundable deposit ₹2500</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Expedition 70L Rucksack', 299, 2500, 5)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Pocket Canister Stove" data-stock="10" data-cat="Stoves" data-type="" data-temp="none" data-price="99">
+          <svg class="icon" aria-hidden="true"><use href="#i-stove"></use></svg>
+          <h3>Pocket Canister Stove</h3>
+          <p class="tags"><span>Stoves</span></p>
+          <p>Compact single-burner stove for quick meals.</p>
+          <p class="meta">0.3 kg &middot; 10 available</p>
+          <p class="price"><strong>₹99</strong> / day <small>Refundable deposit ₹800</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Pocket Canister Stove', 99, 800, 10)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Twin-Burner Camp Stove" data-stock="4" data-cat="Stoves" data-type="" data-temp="none" data-price="199">
+          <svg class="icon" aria-hidden="true"><use href="#i-stove"></use></svg>
+          <h3>Twin-Burner Camp Stove</h3>
+          <p class="tags"><span>Stoves</span></p>
+          <p>Cook for a group at the campsite.</p>
+          <p class="meta">2.4 kg &middot; 4 available</p>
+          <p class="price"><strong>₹199</strong> / day <small>Refundable deposit ₹1500</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Twin-Burner Camp Stove', 199, 1500, 4)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Multi-Fuel Altitude Stove" data-stock="5" data-cat="Stoves" data-type="" data-temp="none" data-price="249">
+          <svg class="icon" aria-hidden="true"><use href="#i-stove"></use></svg>
+          <h3>Multi-Fuel Altitude Stove</h3>
+          <p class="tags"><span>Stoves</span></p>
+          <p>Reliable in thin, cold air.</p>
+          <p class="meta">0.5 kg &middot; 5 available</p>
+          <p class="price"><strong>₹249</strong> / day <small>Refundable deposit ₹2000</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Multi-Fuel Altitude Stove', 249, 2000, 5)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Aluminium Trekking Poles (pair)" data-stock="12" data-cat="Trekking Poles" data-type="" data-temp="none" data-price="79">
+          <svg class="icon" aria-hidden="true"><use href="#i-pole"></use></svg>
+          <h3>Aluminium Trekking Poles (pair)</h3>
+          <p class="tags"><span>Trekking Poles</span></p>
+          <p>Sturdy, adjustable and budget-friendly.</p>
+          <p class="meta">0.5 kg &middot; 12 available</p>
+          <p class="price"><strong>₹79</strong> / day <small>Refundable deposit ₹600</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Aluminium Trekking Poles (pair)', 79, 600, 12)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Carbon Fibre Poles (pair)" data-stock="8" data-cat="Trekking Poles" data-type="" data-temp="none" data-price="129">
+          <svg class="icon" aria-hidden="true"><use href="#i-pole"></use></svg>
+          <h3>Carbon Fibre Poles (pair)</h3>
+          <p class="tags"><span>Trekking Poles</span></p>
+          <p>Ultra-light poles that absorb shock on steep descents.</p>
+          <p class="meta">0.4 kg &middot; 8 available</p>
+          <p class="price"><strong>₹129</strong> / day <small>Refundable deposit ₹1200</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Carbon Fibre Poles (pair)', 129, 1200, 8)">Add to rental</button>
+        </article>
+        <article class="card gear" data-name="Folding Z-Poles (pair)" data-stock="8" data-cat="Trekking Poles" data-type="" data-temp="none" data-price="99">
+          <svg class="icon" aria-hidden="true"><use href="#i-pole"></use></svg>
+          <h3>Folding Z-Poles (pair)</h3>
+          <p class="tags"><span>Trekking Poles</span></p>
+          <p>Fold small to fit inside a rucksack.</p>
+          <p class="meta">0.4 kg &middot; 8 available</p>
+          <p class="price"><strong>₹99</strong> / day <small>Refundable deposit ₹800</small></p>
+          <button type="button" class="btn add-btn" onclick="addToCart('Folding Z-Poles (pair)', 99, 800, 8)">Add to rental</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="bundles" aria-labelledby="bundles-h">
+      <h2 id="bundles-h">Trekking Destination Starter Bundles</h2>
+      <p>Choosing a bundle starts a fresh rental bag with a ready-made kit and a bundle discount. You can still add extras afterwards.</p>
+      <div id="bundle-grid" class="grid two">
+        <article class="card bundle">
+          <p><span class="badge">Save 10%</span></p>
+          <h3>Weekend Campout Kit</h3>
+          <p>Best for: 2 hikers, 1-3 nights, below 3,000 m</p>
+          <ul>
+          <li>1 &times; TrailLite 2-Person Tent</li>
+          <li>2 &times; Valley Light Sleeping Bag</li>
+          <li>2 &times; TrekLite 40L Rucksack</li>
+          <li>1 &times; Pocket Canister Stove</li>
+          <li>2 &times; Aluminium Trekking Poles (pair)</li>
+          </ul>
+          <p class="price"><strong>₹1,046</strong> / day <small>(was ₹1,162) &middot; Deposit ₹8,900</small></p>
+          <button type="button" class="btn bundle-btn" data-bundle="weekend" onclick="addBundle('weekend')">Choose this kit</button>
+        </article>
+        <article class="card bundle">
+          <p><span class="badge">Save 15%</span></p>
+          <h3>High-Altitude Himalayan Trek Kit</h3>
+          <p>Best for: 2 trekkers, 5-10 days, snow and sub-zero nights</p>
+          <ul>
+          <li>1 &times; Summit 4-Season Dome Tent</li>
+          <li>2 &times; Glacier High-Altitude Bag</li>
+          <li>2 &times; Expedition 70L Rucksack</li>
+          <li>1 &times; Multi-Fuel Altitude Stove</li>
+          <li>2 &times; Carbon Fibre Poles (pair)</li>
+          </ul>
+          <p class="price"><strong>₹2,212</strong> / day <small>(was ₹2,602) &middot; Deposit ₹21,400</small></p>
+          <button type="button" class="btn bundle-btn" data-bundle="himalayan" onclick="addBundle('himalayan')">Choose this kit</button>
+        </article>
+      </div>
+      <table class="compare">
+        <caption>Weekend Campout Kit vs High-Altitude Himalayan Trek Kit</caption>
+        <thead><tr><th scope="col">What you get</th><th scope="col">Weekend Campout Kit</th><th scope="col">Himalayan Trek Kit</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Tent</th><td>1 &times; TrailLite 2-Person Tent</td><td>1 &times; Summit 4-Season Dome Tent</td></tr>
+          <tr><th scope="row">Sleeping bags</th><td>2 &times; Valley Light Sleeping Bag</td><td>2 &times; Glacier High-Altitude Bag</td></tr>
+          <tr><th scope="row">Rucksacks</th><td>2 &times; TrekLite 40L Rucksack</td><td>2 &times; Expedition 70L Rucksack</td></tr>
+          <tr><th scope="row">Stove</th><td>1 &times; Pocket Canister Stove</td><td>1 &times; Multi-Fuel Altitude Stove</td></tr>
+          <tr><th scope="row">Trekking poles</th><td>2 &times; Aluminium Trekking Poles (pair)</td><td>2 &times; Carbon Fibre Poles (pair)</td></tr>
+          <tr><th scope="row">Bundle discount</th><td>10%</td><td>15%</td></tr>
+          <tr><th scope="row">Price per day after discount</th><td>₹1,046</td><td>₹2,212</td></tr>
+          <tr><th scope="row">Refundable deposit</th><td>₹8,900</td><td>₹21,400</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="3">Prices are per day for 2 people, before <abbr title="Goods and Services Tax">GST</abbr>.</td></tr></tfoot>
+      </table>
+    </section>
+
+    <section id="planner" aria-labelledby="planner-h">
+      <h2 id="planner-h">Plan Your Rental</h2>
+      <div class="two-col">
+        <div>
+          <form id="booking-form" class="card form" onsubmit="return bookNow()">
+            <h3>Reserve this kit</h3>
+            <label>Full name <input id="name" required minlength="3" autocomplete="name"></label>
+            <label>Email <input type="email" id="email" required autocomplete="email"></label>
+            <label>Mobile number <input type="tel" id="phone" required pattern="[6-9][0-9]{9}" title="10-digit Indian mobile number" placeholder="10 digits"></label>
+            <label>Trek type
+              <select id="trek" required>
+                <option value="">Choose...</option><option>Weekend camping</option><option>Day-hike base camp</option><option>High-altitude trek</option>
+              </select>
+            </label>
+            <label>Pick-up point
+              <input id="pickup" list="pickup-list" required placeholder="Choose or type a pick-up point">
+              <datalist id="pickup-list"><option value="VISION Store, Phagwara"><option value="Jalandhar City Counter"><option value="Ludhiana Hub"><option value="Chandigarh Hub"></datalist>
+            </label>
+            <fieldset class="chips">
+              <legend>Collection method</legend>
+              <input type="radio" name="collect" id="col-self" value="Self pick-up" checked><label class="chip" for="col-self">Self pick-up</label>
+              <input type="radio" name="collect" id="col-home" value="Home delivery"><label class="chip" for="col-home">Home delivery</label>
+            </fieldset>
+            <fieldset class="dates">
+              <legend>Rental dates</legend>
+              <label>Pick-up date <input type="date" id="start-date" required onchange="showCart()"></label>
+              <label>Return date <input type="date" id="end-date" required onchange="showCart()"></label>
+              <p id="date-msg" class="msg" role="status"></p>
+            </fieldset>
+            <label>Notes for us (optional)
+              <textarea id="notes" rows="3" maxlength="200" placeholder="Trek route, group size, special requests"></textarea>
+            </label>
+            <label class="check"><input type="checkbox" id="agree" required> I will return the gear clean and undamaged.</label>
+          </form>
+          <h3>Your rental bag</h3>
+          <p id="cart-msg" class="msg" role="status"></p>
+          <div id="cart-list"></div>
+        </div>
+        <aside class="card bill" aria-label="Price and deposit summary">
+          <h3>Price &amp; deposit calculator</h3>
+          <table><caption class="sr">Rental cost breakdown</caption><tbody id="bill-body"></tbody></table>
+          <p class="note">5+ days: 5% off. 10+ days: 10% off. The deposit is fully refundable once gear is returned undamaged.</p>
+          <p id="form-msg" class="msg" role="alert"></p>
+          <!-- Submits the reservation form on the left (so its required-field checks run), then goes to payment.html -->
+          <button class="btn btn-pay" type="submit" form="booking-form">Confirm reservation</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="size-guide" aria-labelledby="size-h">
+      <h2 id="size-h">Equipment Sizing Guide</h2>
+      <div class="two-col">
+        <form id="size-form" class="card form" onsubmit="return findSize()">
+          <label>Your height (cm) <input type="number" id="height" min="120" max="220" value="170" required></label>
+          <label>Trip length
+            <select id="trip">
+              <option value="day">Day hike</option><option value="weekend" selected>Weekend (2-3 days)</option>
+              <option value="week">About a week</option><option value="trek">Long trek (8+ days)</option>
+            </select>
+          </label>
+          <button class="btn" type="submit">Find my size</button>
+        </form>
+        <div id="size-result" class="card" role="status">Enter your height and press "Find my size".</div>
+      </div>
+      <table>
+        <caption>Quick reference</caption>
+        <thead><tr><th scope="col">Height</th><th scope="col">Trekking pole</th><th scope="col">Sleeping bag</th></tr></thead>
+        <tbody>
+          <tr><td>Up to 160 cm</td><td>100-110 cm</td><td>Regular</td></tr>
+          <tr><td>161-180 cm</td><td>110-125 cm</td><td>Regular</td></tr>
+          <tr><td>Above 180 cm</td><td>125-135 cm</td><td>Long</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="sanitation" aria-labelledby="san-h">
+      <h2 id="san-h"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg> Our Sanitation Guarantee</h2>
+      <div class="grid">
+        <article class="card"><h3>Deep-cleaned</h3><p>Every sleeping bag is washed and aired after each rental.</p></article>
+        <article class="card"><h3>Inspected</h3><p>Zips, poles, seams and stove valves are tested before dispatch.</p></article>
+        <article class="card"><h3>Sealed</h3><p>Gear leaves our store in a sealed, labelled bag.</p></article>
+      </div>
+      <h3>Frequently asked questions</h3>
+      <details><summary>When do I get my deposit back?</summary><p>After inspection at return, usually within the same day.</p></details>
+      <details><summary>What if gear is damaged?</summary><p>Repair cost is deducted from the deposit; normal wear is free.</p></details>
+      <details><summary>Can I rent a single item?</summary><p>Yes. Add any gear to your rental bag, no bundle needed.</p></details>
+    </section>
+    <section id="find-us" aria-labelledby="find-h">
+      <h2 id="find-h">Find Us</h2>
+      <div class="two-col">
+        <iframe class="map" title="Map of the VISION pick-up point near Phagwara, Punjab" loading="lazy"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=75.74%2C31.20%2C75.81%2C31.25&amp;layer=mapnik"></iframe>
+        <div class="card">
+          <h3>Pick-up &amp; return</h3>
+          <ul>
+            <li>Open daily, <time datetime="07:00">7:00 am</time> to <time datetime="20:00">8:00 pm</time></li>
+            <li>Late returns are charged one extra day</li>
+            <li>Bring a photo ID at pick-up</li>
+          </ul>
+          <address>VISION Store, Phagwara, Punjab<br><a href="mailto:VISION@gmail.com">VISION@gmail.com</a></address>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <address>VISION Gear Rentals &middot; VISION@gmail.com</address>
+    <p><small>&copy; <time datetime="2026">2026</time> VISION. CSE326 course project.</small></p>
+    <p><a href="#top">Back to top</a></p>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="js/script.js"></script>
+</body>
+</html>
