@@ -16,7 +16,7 @@
 <body id="top">
   <a class="skip" href="#catalog">Skip to catalog</a>
 
-  <!-- Inline SVG icon sprite (Unit 1: SVG shapes) -->
+ 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="i-tent" viewBox="0 0 64 64"><polygon points="32,12 58,52 6,52"/><polyline points="24,52 32,34 40,52"/></symbol>
     <symbol id="i-bag" viewBox="0 0 64 64"><rect x="6" y="20" width="52" height="24" rx="12"/><line x1="40" y1="20" x2="40" y2="44"/><line x1="14" y1="32" x2="32" y2="32"/></symbol>
@@ -60,7 +60,7 @@
     <section id="catalog" aria-labelledby="catalog-h">
       <h2 id="catalog-h">Gear Catalog</h2>
       <div class="filters card" role="search" aria-label="Catalog filters">
-        <!-- Category buttons: click one to see only that category, click All to see everything -->
+       
         <div class="chips" role="group" aria-label="Gear category">
           <button type="button" class="chip active" data-cat="All" aria-pressed="true" onclick="setCategory('All')">All</button>
           <button type="button" class="chip" data-cat="Tents" aria-pressed="false" onclick="setCategory('Tents')">Tents</button>
@@ -364,7 +364,7 @@
           <table><caption class="sr">Rental cost breakdown</caption><tbody id="bill-body"></tbody></table>
           <p class="note">5+ days: 5% off. 10+ days: 10% off. The deposit is fully refundable once gear is returned undamaged.</p>
           <p id="form-msg" class="msg" role="alert"></p>
-          <!-- Submits the reservation form on the left (so its required-field checks run), then goes to payment.html -->
+         
           <button class="btn btn-pay" type="submit" form="booking-form">Confirm reservation</button>
         </aside>
       </div>
