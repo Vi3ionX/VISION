@@ -1,5 +1,3 @@
-// VISION payment page (demo only: no real gateway, nothing is charged).
-// Reads the booking saved by bookNow() in script.js, then shows the confirmed-booking notice.
 
 let booking = null;
 
