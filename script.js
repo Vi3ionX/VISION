@@ -1,27 +1,24 @@
-// VISION script: only the basic JavaScript (variables, if/else, loops, arrays, objects, functions)
-// Catalog filters, search and sorting use simple DOM code below; FAQ, form validation and layout are HTML and CSS.
 
-// ===== Constants and variables =====
-const GST_RATE = 18;          // percent
-const DISCOUNT_5_DAYS = 5;    // percent for 5+ day rentals
-const DISCOUNT_10_DAYS = 10;  // percent for 10+ day rentals
+const GST_RATE = 18;          
+const DISCOUNT_5_DAYS = 5;    
+const DISCOUNT_10_DAYS = 10;  
 const MAX_DAYS = 30;
 
-let cart = [];                // array of objects: { name, price, deposit, stock, qty }
-let bundleDiscount = 0;       // percent, set when a bundle is chosen
-let currentBundle = "";       // key of the bundle in the bag ("" = none)
+let cart = [];               
+let bundleDiscount = 0;       
+let currentBundle = "";      
 let toastTimer = null;
 
-// The bag and the form are saved in localStorage so nothing is lost when the user leaves and comes back
+
 const DRAFT_KEY = "visionDraft";
 const TEXT_FIELDS = ["name", "email", "phone", "trek", "pickup", "start-date", "end-date", "notes"];
 
-// An object that stores the starter bundles
+
 const bundles = {
   weekend: {
     name: "Weekend Campout Kit",
     discount: 10,
-    // each item: [name, price, deposit, stock, quantity]
+    
     items: [
       ["TrailLite 2-Person Tent", 349, 2500, 6, 1],
       ["Valley Light Sleeping Bag", 129, 1000, 10, 2],
@@ -44,7 +41,7 @@ const bundles = {
   }
 };
 
-// ===== Add / remove items =====
+
 function addToCart(name, price, deposit, stock) {
   for (let i = 0; i < cart.length; i++) {
     if (cart[i].name === name) {
@@ -67,7 +64,7 @@ function addToCart(name, price, deposit, stock) {
 
 function addBundle(key) {
   const chosen = bundles[key];
-  cart = [];                       // start a fresh bag
+  cart = [];                       
   for (let i = 0; i < chosen.items.length; i++) {
     const it = chosen.items[i];
     cart.push({ name: it[0], price: it[1], deposit: it[2], stock: it[3], qty: it[4] });
@@ -85,13 +82,13 @@ function changeQty(index, change) {
     document.getElementById("cart-msg").textContent = "Only " + cart[index].stock + " available.";
     return;
   }
-  if (change < 0) { bundleDiscount = 0; }   // bundle is no longer complete
+  if (change < 0) { bundleDiscount = 0; }  
   if (newQty <= 0) { cart.splice(index, 1); }
   else { cart[index].qty = newQty; }
   showCart();
 }
 
-// used by the +/- buttons on the catalog cards
+
 function changeQtyByName(name, change) {
   for (let i = 0; i < cart.length; i++) {
     if (cart[i].name === name) { changeQty(i, change); return; }
@@ -104,7 +101,7 @@ function removeItem(index) {
   showCart();
 }
 
-// ===== Show the bag =====
+
 function showCart() {
   let html = "";
   let count = 0;
@@ -129,7 +126,7 @@ function showCart() {
   saveDraft();
 }
 
-// Turn each catalog card's "Add to rental" button into a - qty + stepper once the item is in the bag
+
 function syncCatalog() {
   for (let i = 0; i < gearCards.length; i++) {
     const card = gearCards[i];
@@ -151,7 +148,7 @@ function syncCatalog() {
   }
 }
 
-// Small message at the bottom of the screen so the user sees that the click worked
+
 function showToast(text) {
   const toast = document.getElementById("toast");
   toast.innerHTML = text + ' <a href="#planner">View bag</a>';
@@ -160,7 +157,7 @@ function showToast(text) {
   toastTimer = setTimeout(function () { toast.hidden = true; }, 2500);
 }
 
-// ===== Keep the user's information (bag + form) =====
+
 function saveDraft() {
   const draft = { cart: cart, bundleDiscount: bundleDiscount, currentBundle: currentBundle, fields: {} };
   for (let i = 0; i < TEXT_FIELDS.length; i++) {
@@ -186,7 +183,7 @@ function loadDraft() {
   document.getElementById("agree").checked = (draft.agree === true);
 }
 
-// ===== Dates, price and deposit calculator =====
+
 function getDays() {
   const start = document.getElementById("start-date").value;
   const end = document.getElementById("end-date").value;
@@ -243,7 +240,7 @@ function showBill() {
   return payNow;
 }
 
-// ===== Size finder =====
+
 function findSize() {
   const height = Number(document.getElementById("height").value);
   const trip = document.getElementById("trip").value;
@@ -267,10 +264,7 @@ function findSize() {
   return false;   // stop the page from reloading
 }
 
-// ===== Booking form =====
-// The "Confirm reservation" button under the calculator submits the form on the left.
-// HTML already checks required, email, pattern and minlength before this runs.
-// If everything is fine, the booking is saved and the user goes to the payment page.
+
 function bookNow() {
   const msg = document.getElementById("form-msg");
   const days = getDays();
@@ -289,9 +283,9 @@ function bookNow() {
   for (let i = 0; i < cart.length; i++) {
     items += cart[i].qty + " x " + cart[i].name + ", ";
   }
-  items = items.slice(0, items.length - 2);   // remove the last ", "
+  items = items.slice(0, items.length - 2);   
 
-  // an object holding everything the payment page needs
+
   const booking = {
     name: document.getElementById("name").value,
     email: document.getElementById("email").value,
@@ -317,11 +311,11 @@ function bookNow() {
   return false;
 }
 
-// ===== Catalog filters =====
-let currentCategory = "All";                                   // which category button is active
+
+let currentCategory = "All";                                   
 const catalogGrid = document.getElementById("catalog-grid");
 const gearCards = Array.from(catalogGrid.querySelectorAll(".gear"));
-const featuredOrder = gearCards.slice();                       // remember the original order for "Featured"
+const featuredOrder = gearCards.slice();                      
 
 function setCategory(name) {
   currentCategory = name;
@@ -331,7 +325,7 @@ function setCategory(name) {
     buttons[i].classList.toggle("active", isActive);
     buttons[i].setAttribute("aria-pressed", isActive);
   }
-  // the tent type filter only makes sense for tents
+  
   document.getElementById("tent-wrap").hidden = (name !== "Tents");
   if (name !== "Tents") { document.getElementById("f-tent").value = ""; }
   applyFilters();
@@ -345,7 +339,7 @@ function applyFilters() {
   const sort = document.getElementById("f-sort").value;
   document.getElementById("f-price-out").textContent = "₹" + maxPrice;
 
-  // 1. show or hide every card
+ 
   let shown = 0;
   for (let i = 0; i < gearCards.length; i++) {
     const card = gearCards[i];
@@ -359,7 +353,7 @@ function applyFilters() {
     if (show) { shown++; }
   }
 
-  // 2. sort the cards
+ 
   const sorted = featuredOrder.slice();
   if (sort === "price-low") {
     sorted.sort(function (a, b) { return Number(a.dataset.price) - Number(b.dataset.price); });
@@ -372,7 +366,7 @@ function applyFilters() {
   }
   for (let i = 0; i < sorted.length; i++) { catalogGrid.appendChild(sorted[i]); }
 
-  // 3. update the counter and the empty message
+ 
   document.getElementById("result-count").textContent = "Showing " + shown + " of " + gearCards.length + " items";
   document.getElementById("no-results").hidden = (shown !== 0);
 }
@@ -382,10 +376,10 @@ function resetFilters() {
   document.getElementById("f-temp").value = "";
   document.getElementById("f-price").value = document.getElementById("f-price").max;
   document.getElementById("f-sort").value = "featured";
-  setCategory("All");              // also clears the tent type and re-applies the filters
+  setCategory("All");             
 }
 
-// Build the - qty + stepper inside every catalog card (hidden until the item is in the bag)
+
 function buildSteppers() {
   for (let i = 0; i < gearCards.length; i++) {
     const name = gearCards[i].dataset.name;
@@ -401,9 +395,9 @@ function buildSteppers() {
   }
 }
 
-// ===== Start-up =====
+
 buildSteppers();
-loadDraft();                                   // bring back the bag and form after returning to the page
+loadDraft();                               
 showCart();
 setCategory("All");
 document.getElementById("booking-form").addEventListener("input", saveDraft);
